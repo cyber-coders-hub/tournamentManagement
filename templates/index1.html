@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>24BroYT Tournament</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">24BroYT Tournament</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">12:00 PM - 03:00 PM <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'evening' %}">06:00 PM - 10:00 PM</a>
+                </li>
+            </ul>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">Add your
+                entry</button>
+        </div>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tournament Registration</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <form action="#" method="post">
+                            {%csrf_token%}
+                            <div class="form-group">
+                                <label for="slotId">Choose slot</label>
+                                <select class="form-control" name="slotId" id="">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="playerChoose">Choose your player id</label>
+                                <select class="form-control" name="playerChoose" id="">
+                                    <option value="1">Player 1</option>
+                                    <option value="2">Player 2</option>
+                                </select>
+                            </div>
+                            <label for="uniqueKey">Enter your Unique key</label>
+                            <input type="text" class="form-control" name="uniqueKey" id="" aria-describedby="emailHelpId" placeholder="Enter your Unique Key"><br>
+                            <label for="name">Enter your name</label>
+                            <input type="text" class="form-control" name="name" id="" aria-describedby="emailHelpId" placeholder="Enter your name"><br>
+                            <div class="form-group">
+                                <label for="time">Choose your time</label>
+                                <select class="form-control" name="time" id="">
+                                    <option value="1">06:00 PM - 06:30 PM</option>
+                                    <option value="2">06:30 PM - 07:00 PM</option>
+                                    <option value="3">07:00 PM - 07:30 PM</option>
+                                    <option value="4">07:30 PM - 08:00 PM</option>
+                                    <option value="5">08:00 PM - 08:30 PM</option>
+                                    <option value="6">08:30 PM - 09:00 PM</option>
+                                    <option value="7">09:00 PM - 09:30 PM</option>
+                                    <option value="8">09:30 PM - 10:00 PM</option>
+                                </select>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="mx-2 my-2">Rules:
+        <ul>
+            <li>There can only be two players in a slot.</li>
+            <li>There are 8 slots in a time. You can fill any of the empty slots.</li>
+            <li>If you try to over write already filled slots or player's id your data will not be added.</li>
+        </ul>
+    </div>
+    <div class="mt-5 mx-2 font-weight-bold mb-2 text-success">12:00 PM - 12:30 PM</div class="mt-5 mx-2 font-weight-bold mb-2 text-success">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Players</th>
+                <th>Player's ID</th>
+                <th>Slot</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data1 in data1 %}
+            <tr>
+                <td scope="row">{{data1.name}}</td>
+                <td >{{data1.playerChoose}}</td>
+                <td>{{data1.slotId}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="mt-5 mx-2 font-weight-bold mb-2 text-success">12:30 PM - 01:00 PM</div class="mt-5 mx-2 font-weight-bold mb-2 text-success">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Players</th>
+                <th>Player's ID</th>
+                <th>Slot</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data2 in data2 %}
+            <tr>
+                <td scope="row">{{data2.name}}</td>
+                <td >{{data2.playerChoose}}</td>
+                <td>{{data2.slotId}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="mt-5 mx-2 font-weight-bold mb-2 text-success">01:00 PM - 01:30 PM</div class="mt-5 mx-2 font-weight-bold mb-2 text-success">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Players</th>
+                <th>Player's ID</th>
+                <th>Slot</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data3 in data3 %}
+            <tr>
+                <td scope="row">{{data3.name}}</td>
+                <td >{{data3.playerChoose}}</td>
+                <td>{{data3.slotId}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="mt-5 mx-2 font-weight-bold mb-2 text-success">01:30 PM - 02:00 PM</div class="mt-5 mx-2 font-weight-bold mb-2 text-success">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Players</th>
+                <th>Player's ID</th>
+                <th>Slot</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data4 in data4 %}
+            <tr>
+                <td scope="row">{{data4.name}}</td>
+                <td >{{data4.playerChoose}}</td>
+                <td>{{data4.slotId}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="mt-5 mx-2 font-weight-bold mb-2 text-success">02:00 PM - 02:30 PM</div class="mt-5 mx-2 font-weight-bold mb-2 text-success">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Players</th>
+                <th>Player's ID</th>
+                <th>Slot</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data5 in data5 %}
+            <tr>
+                <td scope="row">{{data5.name}}</td>
+                <td >{{data5.playerChoose}}</td>
+                <td>{{data5.slotId}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="mt-5 mx-2 font-weight-bold mb-2 text-success">02:30 PM - 03:00 PM</div class="mt-5 mx-2 font-weight-bold mb-2 text-success">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Players</th>
+                <th>Player's ID</th>
+                <th>Slot</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data5 in data5 %}
+            <tr>
+                <td scope="row">{{data5.name}}</td>
+                <td >{{data5.playerChoose}}</td>
+                <td>{{data5.slotId}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
